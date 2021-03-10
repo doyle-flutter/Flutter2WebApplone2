@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter2webapp/pages/contentMain/contentMain.dart';
 import 'package:flutter2webapp/pages/login/loginPage.dart';
 import 'package:flutter2webapp/pages/main/mainPage.dart';
 import 'package:flutter2webapp/providres/test2Provider.dart';
