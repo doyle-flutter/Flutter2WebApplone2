@@ -5,3 +5,6 @@
 
 - 샘플 (1)
 <img width="40%" src="https://user-images.githubusercontent.com/56661529/110464765-e66b7e00-8116-11eb-9c1e-bde11a9b17c6.png" />
+
+- 샘플 (2) : CustomPageWidgetBuilder & ReactPage
+<img width="40%" src="https://user-images.githubusercontent.com/56661529/110509060-0ca81280-8145-11eb-8eeb-31507888cdf1.png" />

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter2webapp/pages/pageClass.dart';
+import 'package:flutter2webapp/pages/CustomPageWidgetBuilder.dart';
 
-class MainPage extends PageClass {
+class MainPage extends CustomPageWidgetBuilder {
 
   @override
   Widget appScaffold(BuildContext context) => Scaffold(

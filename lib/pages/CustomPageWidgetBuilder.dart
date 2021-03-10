@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter2webapp/pages/reactPage.dart';
 
-abstract class PageClass extends StatelessWidget{
+abstract class CustomPageWidgetBuilder extends StatelessWidget{
   Widget appScaffold(BuildContext context);
   Widget webScaffold(BuildContext context);
 
