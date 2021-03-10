@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter2webapp/pages/mainPage.dart';
-import 'package:flutter2webapp/pages/subPage.dart';
+import 'package:flutter2webapp/pages/main/mainPage.dart';
 
 void main() => runApp(App());
 
@@ -14,7 +13,7 @@ class App extends StatelessWidget {
           return MaterialPageRoute<void>(
             settings: RouteSettings(name: '/sub'),
             maintainState: false,
-            builder: (BuildContext context) => SubPage()
+            builder: (BuildContext context) => Scaffold(appBar: AppBar(title: Text("/sub"),),)
           );
         }
         return MaterialPageRoute<void>(
