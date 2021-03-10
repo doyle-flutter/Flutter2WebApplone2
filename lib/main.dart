@@ -56,6 +56,7 @@ class App extends StatelessWidget {
             /// IOS(Cupertino) 까지 사용하기 위해서는 좀 더 상위 위젯에서 만들어야합니다
             /// App Widget 에서 사용해서 MaterialApp 과 CupertinoApp으로 분기해주세요
             /// 이번 내용에서는 참고용으로 담아두겠습니다.
+            /// * [예시 영상](https://youtu.be/6q0ODwKnPis)
             builder: (context) => LoginPage()
           );
           return MaterialPageRoute<void>(
