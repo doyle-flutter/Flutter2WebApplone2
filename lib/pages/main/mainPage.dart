@@ -22,6 +22,10 @@ class MainPage extends CustomPageWidgetBuilder {
           IconButton(
             icon: Icon(Icons.navigate_next),
             onPressed: () => Navigator.of(context).pushNamed("/login"),
+          ),
+          IconButton(
+            icon: Icon(Icons.audiotrack),
+            onPressed: () => Navigator.of(context).pushNamed("/main"),
           )
         ],
       ),
