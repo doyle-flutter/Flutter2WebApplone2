@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter2webapp/pages/reactPage.dart';
+import 'package:flutter2webapp/pages/platformCheck/widgetTreeReverse/reactPage.dart';
 
 abstract class CustomPageWidgetBuilder extends StatelessWidget{
   Widget appScaffold(BuildContext context);

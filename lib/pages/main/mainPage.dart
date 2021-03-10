@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter2webapp/pages/CustomPageWidgetBuilder.dart';
+import 'package:flutter2webapp/pages/platformCheck/widgetTreeReverse/CustomPageWidgetBuilder.dart';
 import 'package:flutter2webapp/providres/testProvider.dart';
 import 'package:flutter2webapp/repos/repoCheck.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +18,12 @@ class MainPage extends CustomPageWidgetBuilder {
       appBar: AppBar(
         title: Text("APP : ${t1!.data}"),
         backgroundColor: Colors.purple,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.navigate_next),
+            onPressed: () => Navigator.of(context).pushNamed("/login"),
+          )
+        ],
       ),
       body: Center(
         child: IconButton(
