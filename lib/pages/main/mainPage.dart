@@ -1,23 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter2webapp/pages/CustomPageWidgetBuilder.dart';
+import 'package:flutter2webapp/providres/testProvider.dart';
+import 'package:flutter2webapp/repos/repoCheck.dart';
+import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class MainPage extends CustomPageWidgetBuilder {
 
-  @override
-  Widget appScaffold(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text("APP"),),
-  );
+  TestProvider? t1;
+  final Func func = new Func();
 
   @override
-  Widget webScaffold(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: Text("WEB"),
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    // Providers
-    return super.build(context);
+  Widget appScaffold(BuildContext context){
+    // [ Provider Only Read ]
+    this.t1 = Provider.of<TestProvider>(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("APP : ${t1!.data}"),
+        backgroundColor: Colors.purple,
+      ),
+      body: Center(
+        child: IconButton(
+          icon: Icon(Icons.call),
+          onPressed: () => t1!.data = "JAMES APP",
+        ),
+      ),
+    );
   }
+
+  @override
+  Widget webScaffold(BuildContext context){
+    // [ Provider Only Read ]
+    this.t1 = Provider.of<TestProvider>(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("WEB : ${t1!.data}"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_active),
+            // [ Repo : WEB - Alert ]
+            onPressed: () => func.run()
+          )
+        ],
+      ),
+      body: Center(
+        child: IconButton(
+          icon: Icon(Icons.call_end_outlined),
+          onPressed: () => t1!.data = "JAMES WEB?!",
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => super.build(context);
 }

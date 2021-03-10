@@ -10,7 +10,7 @@ class ReactPage extends StatelessWidget{
   Widget build(BuildContext context) => _build(context);
 
   Widget _build(BuildContext context){
-    if(kIsWeb || MediaQuery.of(context).size.width > 800.0) return web(context);
+    if(kIsWeb && MediaQuery.of(context).size.width > 800.0) return web(context);
     return app(context);
   }
 

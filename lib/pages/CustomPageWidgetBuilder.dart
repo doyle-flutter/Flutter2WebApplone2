@@ -4,7 +4,7 @@ import 'package:flutter2webapp/pages/reactPage.dart';
 abstract class CustomPageWidgetBuilder extends StatelessWidget{
   Widget appScaffold(BuildContext context);
   Widget webScaffold(BuildContext context);
-
+  CustomPageWidgetBuilder();
   @override
   Widget build(BuildContext context) => _render(context);
 
