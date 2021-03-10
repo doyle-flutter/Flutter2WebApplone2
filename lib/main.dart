@@ -59,6 +59,10 @@ class App extends StatelessWidget {
             /// * [예시 영상](https://youtu.be/6q0ODwKnPis)
             builder: (context) => LoginPage()
           );
+          if(rs.name == "/main") return MaterialPageRoute(
+            settings: RouteSettings(name: "/main"),
+            builder: (context) => ContentMain()
+          );
           return MaterialPageRoute<void>(
             settings: RouteSettings(name: '/'),
             maintainState: false,
