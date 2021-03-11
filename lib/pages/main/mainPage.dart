@@ -35,6 +35,10 @@ class MainPage extends CustomPageWidgetBuilder {
           onPressed: () => t1!.data = "JAMES APP",
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.person),
+        onPressed: () => Navigator.of(context).pushNamed("/profile"),
+      ),
     );
   }
 
@@ -50,6 +54,10 @@ class MainPage extends CustomPageWidgetBuilder {
             icon: Icon(Icons.notifications_active),
             // [ Repo : WEB - Alert ]
             onPressed: () => func.run()
+          ),
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () => Navigator.of(context).pushNamed("/profile"),
           )
         ],
       ),

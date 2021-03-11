@@ -7,14 +7,15 @@ import 'package:flutter2webapp/models/contentMainModel.dart';
 import 'package:flutter2webapp/repos/repoCheck.dart';
 import 'package:http/http.dart' as http;
 
-class ContentMain extends StatefulWidget {
+class ContentMainPage extends StatefulWidget {
   @override
-  _ContentMainState createState() => _ContentMainState();
+  _ContentMainPageState createState() => _ContentMainPageState();
 }
 
-class _ContentMainState extends State<ContentMain> {
+class _ContentMainPageState extends State<ContentMainPage> {
 
   List<ContentMainModel>? datas;
+  String _loadMsg = "기다려주세요";
 
   @override
   void initState() {
@@ -25,11 +26,25 @@ class _ContentMainState extends State<ContentMain> {
   Future<void> _init() async{
     const String _host = "localhost:4000";
     const String _path = "/contents";
-    final http.Response _res = await http.get(Uri.http(_host, _path));
-    final Map<String,dynamic> _resData = json.decode(_res.body);
-    final List _result = _resData['data'];
-    this.datas = _result.map<ContentMainModel>((dynamic e) => ContentMainModel.fromJson(json: e)).toList();
-    return;
+    try{
+      final http.Response _res = await http.get(Uri.http(_host, _path)).timeout(Duration(seconds: 8), onTimeout: () async => http.Response("",408));
+      if(_res.statusCode == 404) {
+        _loadMsg = "서버 점검 또는 오류";
+        return;
+      }
+      if(_res.statusCode == 408) {
+        _loadMsg = "인터넷 연결 상태 확인";
+        return;
+      }
+      final Map<String,dynamic> _resData = json.decode(_res.body);
+      final List _result = _resData['data'];
+      this.datas = _result.map<ContentMainModel>((dynamic e) => ContentMainModel.fromJson(json: e)).toList();
+      return;
+    }
+    catch(e){
+      _loadMsg = "인터넷 연결 상태 확인";
+      return;
+    }
   }
 
   @override
@@ -50,18 +65,7 @@ class _ContentMainState extends State<ContentMain> {
   Widget _and(BuildContext context){
     return Scaffold(
       appBar: AppBar(title: Text("APP - Material")),
-      body: this.datas == null
-        ? _loadWidget()
-        : GridView.builder(
-            itemCount: this.datas!.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0
-            ),
-            padding: EdgeInsets.all(10.0),
-            itemBuilder: (BuildContext context, int index) => _contentTile(this.datas![index])
-          ),
+      body: _commonGrid(isMobile: true),
     );
   }
   Widget _ios(BuildContext context){
@@ -79,20 +83,22 @@ class _ContentMainState extends State<ContentMain> {
     Func f = Func();
     return Scaffold(
       appBar: AppBar(title: Text("WEB - Material"),),
-      body: this.datas == null
-        ? _loadWidget()
-        : GridView.builder(
-          itemCount: this.datas!.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            mainAxisSpacing: 20.0,
-            crossAxisSpacing: 20.0
-          ),
-          padding: EdgeInsets.all(20.0),
-          itemBuilder: (BuildContext context, int index) => _contentTile(this.datas![index])
-        ),
-    );
+      body: _commonGrid(isMobile: false))
+    ;
   }
+
+  Widget _loadWidget() => Center(child: Text(this._loadMsg),);
+
+  SliverGridDelegate _checkDelegate({required bool isMobile})
+   => isMobile ? SliverGridDelegateWithFixedCrossAxisCount(
+       crossAxisCount: 2,
+       mainAxisSpacing: 10.0,
+       crossAxisSpacing: 10.0
+   ) : SliverGridDelegateWithFixedCrossAxisCount(
+       crossAxisCount: 4,
+       mainAxisSpacing: 20.0,
+       crossAxisSpacing: 20.0
+   );
 
   Widget _contentTile(ContentMainModel data){
     return GridTile(
@@ -101,12 +107,18 @@ class _ContentMainState extends State<ContentMain> {
         child: Text(data.id),
       ),
       child: Container(
-        color: Colors.grey[200],
-        child: Center(child: Text(data.name))
+          color: Colors.grey[200],
+          child: Center(child: Text(data.name))
       ),
     );
   }
 
-  Widget _loadWidget() => Center(child: Text("기다려주세요"),);
+  Widget _commonGrid({required bool isMobile})
+    => this.datas == null ? _loadWidget() : GridView.builder(
+      itemCount: this.datas!.length,
+      gridDelegate: _checkDelegate(isMobile: isMobile),
+      padding: EdgeInsets.all(10.0),
+      itemBuilder: (BuildContext context, int index) => _contentTile(this.datas![index])
+  );
 
 }

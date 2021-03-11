@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter2webapp/pages/contentMain/contentMain.dart';
 import 'package:flutter2webapp/pages/login/loginPage.dart';
 import 'package:flutter2webapp/pages/main/mainPage.dart';
+import 'package:flutter2webapp/pages/profile/profilePage.dart';
+import 'package:flutter2webapp/providres/platformCheckProvider.dart';
 import 'package:flutter2webapp/providres/test2Provider.dart';
 import 'package:flutter2webapp/providres/testProvider.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +20,12 @@ class App extends StatelessWidget {
         /// '/sub' 경로에서 사용한 Provider 처럼 해당 페이지(또는 위젯)에서만 사용하도록 합니다.
         /// 전역으로 마구 사용하다 보면 페이지(또는 위젯) 개수 만큼 늘어납니다.
         ChangeNotifierProvider<TestProvider>(create: (context) => TestProvider()),
+
+        ChangeNotifierProvider<PlatformCheckProvider>(create: (context) => PlatformCheckProvider(),)
       ],
       child: MaterialApp(
         title: "Flutter 2 웹과 앱을 한번에",
+        debugShowCheckedModeBanner: false,
         onGenerateRoute: (RouteSettings rs){
           if(rs.name == "/sub"){
             return MaterialPageRoute<void>(
@@ -62,7 +67,14 @@ class App extends StatelessWidget {
           );
           if(rs.name == "/main") return MaterialPageRoute(
             settings: RouteSettings(name: "/main"),
-            builder: (context) => ContentMain()
+            builder: (context) => ContentMainPage()
+          );
+          /// Stateless & Provider
+          /// 가장 기초적인 부분이 되는 내용일 것 같습니다
+          /// Model 을 class 대신 enum 을 적용하였습니다
+          if(rs.name == "/profile") return MaterialPageRoute(
+              settings: RouteSettings(name: "/profile"),
+              builder: (context) => ProfilePage()
           );
           return MaterialPageRoute<void>(
             settings: RouteSettings(name: '/'),
