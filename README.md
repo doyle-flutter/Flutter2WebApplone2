@@ -7,7 +7,7 @@
 
   - 구성 미리 보기 👉 [Video](https://youtu.be/VwD7ESXOjBM)
   - /login 경로 위젯 구현 예시 👉 [Video](https://youtu.be/6q0ODwKnPis)
-  - Stateful 사용( /main 경로 ) & HTTP 적용(DartServer 활용) 👉 [Video](https://youtu.be/G3dBYdsVNyU)
+  - Stateful 사용( /main 경로 ) & HTTP 적용(DartServer 활용) 👉 [Video](https://youtu.be/G3dBYdsVNyU) & [Dart Server_Video](https://youtu.be/B9KIcUpBq1U)
   - Stateless & Provider 적용 ( /profile ) 👉 [Video](https://youtu.be/NXnws-0ZG1U)
   - 클론 설명 영상 👉 ... 작성 중
 

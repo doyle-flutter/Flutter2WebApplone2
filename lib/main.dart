@@ -8,9 +8,9 @@ import 'package:flutter2webapp/providres/test2Provider.dart';
 import 'package:flutter2webapp/providres/testProvider.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(App());
+void main() => runApp(AppController());
 
-class App extends StatelessWidget {
+class AppController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
