@@ -72,6 +72,7 @@ class App extends StatelessWidget {
           /// Stateless & Provider
           /// 가장 기초적인 부분이 되는 내용일 것 같습니다
           /// Model 을 class 대신 enum 을 적용하였습니다
+          /// * [예시 영상](https://youtu.be/NXnws-0ZG1U)
           if(rs.name == "/profile") return MaterialPageRoute(
               settings: RouteSettings(name: "/profile"),
               builder: (context) => ProfilePage()
